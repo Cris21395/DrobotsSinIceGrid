@@ -3,9 +3,10 @@
 
 .PHONY: all run-player run-player2 run-container clean run-all-factories
 
-SERVER = drobots3
+SERVER = drobots7
 
 all:
+	firefox http://atclab.esi.uclm.es/drobots/canvas.html?p=$(SERVER)
 	gnome-terminal --tab -e "make run-all-factories"
 	gnome-terminal --tab -e "make run-container"
 	gnome-terminal --tab -e "make run-player2"

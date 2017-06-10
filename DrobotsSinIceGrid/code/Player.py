@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import Ice
-Ice.loadSlice('servicies.ice --all -I .')
+Ice.loadSlice('services.ice --all -I .')
 import drobots
 import sys, time, random 
 
