@@ -49,7 +49,6 @@ class PlayerI(drobots.Player):
         self.adapter = adapter    
         self.rc_counter = 0
         self.container_robots = self.createContainerControllers()
-        #self.factory = Factory(self.broker, self.adapter, self.container_robots)
 
     def makeController(self, robot, adapter, current=None): 
         print ('Making a robot controller...')
@@ -63,7 +62,6 @@ class PlayerI(drobots.Player):
  
         rc_proxy = self.adapter.add(rc_servant, self.broker.stringToIdentity(name))
 
-        #rc_proxy = self.factory.make(robot, name)
         rc = drobots.RobotControllerPrx.checkedCast(rc_proxy)
         return rc             
     
@@ -88,21 +86,6 @@ class PlayerI(drobots.Player):
             raise RuntimeError('Invalid factory proxy')
         
         return controller_container
-
-'''class Factory:
-    def __init__(self, broker, adapter, container):
-        self.broker=broker
-        self.adapter=adapter
-        self.container = container
-
-    def make(self, bot, name, current=None):
-        if bot.ice_isA("::drobots::Attacker"):
-            rc_servant = RobotControllerAttackerI(bot, self.container)
-        else:
-            rc_servant = RobotControllerDefenderI(bot, self.container)
- 
-        rc_proxy = self.adapter.add(rc_servant, self.broker.stringToIdentity(name))
-        return rc_proxy'''
 
 if __name__ == '__main__':
 	sys.exit(PlayerApp().main(sys.argv))
