@@ -22,6 +22,10 @@ En DROBOTS, el juego trata de respetar siempre que sea posible las reglas y func
 
 # 2. Ejecución
 Para probar la ejecución de este pequeño proyecto, necesitaremos conectar nuestra vpn a la red de la UCLM además de abrir un
-terminal donde escribiremos el siguiente comando: make all. Con este comando se ejecutarán todos los programas necesarios para
+terminal donde escribiremos el siguiente comando:
+```
+make all
+```
+Con este comando se ejecutarán todos los programas necesarios para
 que la aplicación funcione correctamente. Es importante resaltar, que si la aplicación no funciona, se debe a que el servidor
 de la unviersidad(UCLM) ha sido modificado para la realización de otra práctica diferente a ésta.
