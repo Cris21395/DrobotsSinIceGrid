@@ -6,6 +6,7 @@
 SERVER = factory
 
 all:
+	make run-game-factory
 	gnome-terminal --tab -e "make run-all-factories"
 	gnome-terminal --tab -e "make run-container"
 	gnome-terminal --tab -e "make run-player2"
@@ -34,6 +35,9 @@ run-all-factories:
 
 run-container:
 	python code/Container.py --Ice.Config=Container.config
+
+run-game-factory:
+	firefox http://atclab.esi.uclm.es/drobots/canvas.html?p=FactoryRobots &
 
 clean:
 	sudo rm -f code/*.pyc

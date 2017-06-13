@@ -20,7 +20,7 @@ class PlayerApp(Ice.Application):
 
         proxy_game = broker.stringToProxy(argv[1]) 
         print ('Proxy game: ' + str(proxy_game))
-        gameFact = drobots.GameFactoryPrx.checkedCast(proxy_game)
+        gameFact = drobots.GameFactoryPrx.uncheckedCast(proxy_game)
         game = gameFact.makeGame("FactoryRobots", 2)
         print "game factory: " + str(game)
 
