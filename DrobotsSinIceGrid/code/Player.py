@@ -19,13 +19,15 @@ class PlayerApp(Ice.Application):
         player = drobots.PlayerPrx.checkedCast(proxy_player)
 
         proxy_game = broker.stringToProxy(argv[1]) 
-        print ('Proxy game: ' +str(proxy_game))
-        game = drobots.GamePrx.checkedCast(proxy_game)
+        print ('Proxy game: ' + str(proxy_game))
+        gameFact = drobots.GameFactoryPrx.checkedCast(proxy_game)
+        game = gameFact.makeGame("FactoryRobots", 2)
+        print "game factory: " + str(game)
 
         try:
-            print ('We try to do login...')
+            print ('Trying to do login...')
             game.login(player, 'Cris' + str(random.randint(0,99)))
-            print ('We are waiting to receive the robot controllers')
+            print ('Waiting to receive the robot controllers')
         except drobots.GameInProgress:
             print '\033[91m\033[1m' + "\nGame in progress. Try it again" + '\033[0m'
             return 1
@@ -35,7 +37,10 @@ class PlayerApp(Ice.Application):
         except drobots.InvalidName, e:
             print '\033[91m\033[1m' + "\nInvalid name. It is possible that other person be using your name" + '\033[0m'
             print str(e.reason)
-            return 3             
+            return 3
+        except drobots.BadNumberOfPlayers:
+            print '\033[91m\033[1m' + "\nBad number of players" + '\033[0m'
+            return 4  
   
         self.shutdownOnInterrupt()
         broker.waitForShutdown()
@@ -61,8 +66,8 @@ class PlayerI(drobots.Player):
             print factory_proxy
             factory = drobots.FactoryPrx.checkedCast(factory_proxy)
             
-            if not  factory:
-                raise RuntimeError('Invalid factory '+i+' proxy')
+            if not factory:
+                raise RuntimeError('Invalid factory '+str(i)+' proxy')
         
             factories_container.link(i, factory_proxy)
         

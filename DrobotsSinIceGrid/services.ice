@@ -1,5 +1,5 @@
 // -*- mode:c++ -*-
-#include "drobots.ice"
+#include <drobots.ice>
 
 module drobots {
 

@@ -3,7 +3,7 @@
 
 .PHONY: all run-player run-player2 run-container clean run-all-factories
 
-SERVER = drobots7
+SERVER = factory
 
 all:
 	gnome-terminal --tab -e "make run-all-factories"
